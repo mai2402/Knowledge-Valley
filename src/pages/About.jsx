@@ -15,7 +15,7 @@ function About() {
                         designed to help learners develop the skills they need to succeed in today's fast-paced world.
                     </p>
                     <div className="flex justify-center space-x-4 mt-6">
-                        <button className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-accent transition">
+                        <button className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-teal-600 transition">
                             Learn More
                         </button>
                         <button className="bg-secondary text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition">

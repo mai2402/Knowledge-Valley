@@ -1,4 +1,4 @@
-// tailwind.config.js
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -18,12 +18,7 @@ export default {
       },
     },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Clean, modern font for readability
-      },
-      spacing: {
-        '1/2': '50%',     // For responsive layout adjustments
-        'full': '100%',
-        '15': '1.4rem',
+        sans: ['Inter', 'sans-serif'], 
       },
     },
   plugins: [],
