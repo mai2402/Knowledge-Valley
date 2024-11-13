@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+/* 
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+} */
+ body{
+  min-height: 100vh;
+ }
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+
+.home-container {
+  background-image: url('/public/images/home.webp'); 
+  background-size: cover;
+  background-position: center center; 
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  transition: background-image 0.3s ease-in-out;
+  position: relative; 
+}
+
+@media (max-width: 768px) {
+  .home-container {
+      background-position: top center; 
+      padding: 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+      background-position: top center; 
+      padding: 0 8px; 
+  }
+}
+
+
+.home-container header {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  z-index: 20;
+  
+}
+
+.home-container .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  padding: 70px; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 15px; 
+}
+
+.home-container .content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.home-container .content p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  
+}
+
+.home-container .content .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-container .content .buttons a {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+
+
+
+
+
+
