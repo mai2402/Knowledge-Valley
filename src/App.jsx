@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Login from "./pages/Login"
 import PageNotFound from "./pages/PageNotFound"
 import About from "./pages/About"
@@ -15,18 +15,24 @@ import Contact from "./pages/Contact"
 function App() {
   return(
       <BrowserRouter>
-         <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="login" element={<Login/>}/>
-            <Route path="signup" element={<SignUp/>}/>
-            <Route path="home" element={<Layout/>}/>
-            <Route path="*" element={<PageNotFound/>}/>
-            <Route path="about" element={<About/>}/>
-            <Route path="admin" element={<Admin/>}/>
+      <Routes>
+           {/* unprotected routes  */}
+         <Route path="/" element={<Home/>}/>
+         <Route path="login" element={<Login/>}/>
+         <Route path="signup" element={<SignUp/>}/>
+         <Route path="*" element={<PageNotFound/>}/>
+         <Route path="about" element={<About/>}/>
+         <Route path="contact" element={<Contact/>}/>
+             {/* protected routes  */}
+         <Route path="/home" element={<Layout/>}>
+         <Route index  element={<Navigate replace to="courses"/>} />
             <Route path="account" element={<Account/>}/>
             <Route path="courses" element={<Courses/>}/>
-            <Route path="contact" element={<Contact/>}/>
-         </Routes>
+            <Route path="admin" element={<Admin/>}/>
+
+         </Route>
+
+      </Routes>
       </BrowserRouter>
 
   )
