@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CourseList from "../features/courses/CourseList"
 
 
+
 function Courses() {
     return (
         <div className="bg-gray-50 min-h-full p-10">
