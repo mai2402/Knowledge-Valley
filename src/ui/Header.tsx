@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 function Header() {
   return (
     <header className="bg-primary text-white p-6 shadow-md flex justify-between items-center">
-      <div className="flex items-center justify-star">
-      <h1 className="text-2xl font-bold">
+      <div className="flex  items-center justify-between">
+        <h1 className="text-2xl font-bold">
           Knowledge Valley
-      </h1>
+        </h1>
       </div>
+        {/* <SearchBar/> */}
       <nav className="space-x-8">
         <Link to="/" className="text-lg hover:text-teal-600 transition-all">
           Home

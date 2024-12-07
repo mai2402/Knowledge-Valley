@@ -1,17 +1,12 @@
-import { useState } from "react";
-import CourseCard from "./CourseCard";
-import ListFilterBox from "../../ui/ListFilterBox";
-import useFilterList from "../../hooks/useFilterList";
-
-const courses = [
+export const courses = [
     {
       id: 1,
       name: "HTML & CSS for Beginners",
       description: "Learn the fundamentals of web design with HTML and CSS.",
       category: "Web Development",
       price: 49.99,
-      discount: 10, // in percentage
-      duration: 12, // in hours
+      discount: 10, 
+      duration: 12, 
       level: "Beginner"
     },
     {
@@ -205,35 +200,3 @@ const courses = [
       level: "Beginner"
     }
   ];
-  
- 
-
-  const unifiedLevels = [...new Set(courses.map((courseItem)=>courseItem.level))]
-
-  const unifiedCategories = [...new Set(courses.map((courseItem)=>courseItem.category))]
-
-  function CourseList() {
-    
-  const {handleFilteredByCategory,handleFilteredByLevel,totalResults,filteredCourses}= useFilterList(courses)
-
-    
-      return (<>
-        <div  className="flex flex-row justify-between items-center"> 
-          <div>
-              <ListFilterBox  list={unifiedLevels} placeholder="filter by level" onSelection={handleFilteredByLevel}  />
-              <ListFilterBox  list={unifiedCategories} placeholder="filter by Category" onSelection={handleFilteredByCategory}/>
-          </div>
-              <span>{totalResults} Result</span>
-        </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-              {filteredCourses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
-          </div>
-              </>
-
-      );
-  }
-  
-  export default CourseList;
-  

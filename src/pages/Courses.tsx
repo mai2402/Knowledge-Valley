@@ -3,6 +3,7 @@ import CourseList from "../features/courses/CourseList"
 
 
 
+
 function Courses() {
     return (
         <div className="bg-gray-50 min-h-full p-10">
@@ -12,7 +13,7 @@ function Courses() {
                     At Knowledge Valley, we provide a diverse range of online courses designed to help you grow in your career and personal life. Whether you're a budding web developer, an aspiring data scientist, or a business leader in the making, you'll find courses to suit your goals. Explore below and start learning today!
                 </h1>
             </section>
-
+            
             {/* Decorative Section Break */}
             <div className="my-10 border-t-2 border-teal-600 w-2/3 mx-auto"></div>
 

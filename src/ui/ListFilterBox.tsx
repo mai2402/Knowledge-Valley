@@ -1,6 +1,6 @@
 
 
-function ListFilterBox({list,placeholder,onSelection,resultsCount}) {
+function ListFilterBox({list, placeholder, onSelection, resultsCount}) {
 
 
     return (
@@ -8,8 +8,8 @@ function ListFilterBox({list,placeholder,onSelection,resultsCount}) {
         <span>{resultsCount}</span>
         <select onChange={(e) => onSelection(e.target.value)}>
             <option value="" >{placeholder}</option>
-            {list.map((level)=><option value={level} key={level} >
-                {level}
+            {list.map((option)=><option value={option} key={option} >
+                {option}
             </option>)}
 
         </select>
