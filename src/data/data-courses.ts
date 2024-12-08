@@ -1,4 +1,6 @@
-export const courses = [
+import { CourseSchema } from "../types/CourseSchema";
+
+export const courses: CourseSchema[] = [
     {
       id: 1,
       name: "HTML & CSS for Beginners",

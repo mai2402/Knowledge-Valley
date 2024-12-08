@@ -1,8 +1,13 @@
+
+import { CourseSchema } from "../../types/CourseSchema";
 import { formatCurrency } from "../../utils/helpers";
 
+interface CourseCardProps{
+    course: CourseSchema,
+}
 
 
-function CourseCard({ course }) {
+function CourseCard({ course }:CourseCardProps) {
     const { name, description, category, price, discount, duration, level } = course;
     const discountedPrice = price - (price * (discount / 100));
 

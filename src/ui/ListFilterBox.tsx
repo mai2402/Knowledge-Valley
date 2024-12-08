@@ -1,14 +1,21 @@
+import { filterListDTO } from "../hooks/useFilterList"
 
+interface ListFilterBoxProps {
+    list: string[],
+    filterKey: string,
+    placeholder: string,
+    onSelection: (filter:filterListDTO) => void,
+  
+}
 
-function ListFilterBox({list, placeholder, onSelection, resultsCount}) {
+function ListFilterBox({list, placeholder, filterKey, onSelection}: ListFilterBoxProps) {
 
 
     return (
         <>
-        <span>{resultsCount}</span>
-        <select onChange={(e) => onSelection(e.target.value)}>
+        <select onChange={(e) => onSelection({[filterKey]: e.target.value})}>
             <option value="" >{placeholder}</option>
-            {list.map((option)=><option value={option} key={option} >
+            {list?.map((option)=><option value={option} key={option} >
                 {option}
             </option>)}
 
