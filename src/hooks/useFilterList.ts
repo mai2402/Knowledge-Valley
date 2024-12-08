@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCourses } from "../api/coursesApi";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../constants/Constants";
+import { resetToFirstPage } from "../utils/helpers";
 
 
 export interface filterListDTO{
@@ -20,7 +21,7 @@ export interface filterListDTO{
 
 function useFilterList() {
   const queryClient = useQueryClient()
-  const [searchParams] = useSearchParams()
+  const [searchParams,setSearchParams] = useSearchParams()
   const [coursesFilters, setFilteredCourses]= useState<filterListDTO>({
     level:"",
     category:"",
@@ -30,12 +31,15 @@ function useFilterList() {
   // Pagination
 
       const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"))  ;
+   
 
   // filtering 
 
       const updatedFilteredCourses= (newFilters:filterListDTO) => {
+       
       setFilteredCourses((prev) => ({ ...prev, ...newFilters }));
     };
+  
     
   const {
         data = { courses: [], count: 0 },
@@ -46,8 +50,20 @@ function useFilterList() {
         queryFn:()=>getCourses(page,coursesFilters),
     
 })
+
+
           const courses= data?.courses;
           const count= data?.count || 0;
+
+        //   if(coursesFilters &&count<6){
+      
+        //     const defaultPage =1;
+        //      setSearchParams({ ...searchParams, page:defaultPage.toString()});
+        //  }
+        
+        if (coursesFilters && count < PAGE_SIZE) {
+          resetToFirstPage(searchParams, setSearchParams);
+        }
 
 // next page 
  
@@ -55,17 +71,19 @@ const pageCount = Math.ceil(count/PAGE_SIZE)
 
 if (page<pageCount){
   queryClient.prefetchQuery({
-    queryKey:["courses",coursesFilters,page],
-    queryFn:()=>getCourses((page ?? 0) + 1,coursesFilters),
+    queryKey:["courses",coursesFilters,page+1],
+    queryFn:()=>getCourses(page+1,coursesFilters),
+    
   })
+  
 }
 
 // prev page 
 
 if (page >1){
   queryClient.prefetchQuery({
-    queryKey:["courses",coursesFilters,page],
-    queryFn:()=>getCourses((page ?? 0)-1,coursesFilters),
+    queryKey:["courses",coursesFilters,page-1],
+    queryFn:()=>getCourses(page-1,coursesFilters),
   })
 
 }
@@ -77,7 +95,26 @@ if (page >1){
 }
 
 export default useFilterList
+
+// useEffect(() => {
+//   if (page < pageCount) {
+//       queryClient.prefetchQuery({
+//           queryKey: ["courses", coursesFilters, page + 1],
+//           queryFn: () => getCourses(page + 1, coursesFilters),
+//       });
+//   }
+
+//   if (page > 1) {
+//       queryClient.prefetchQuery({
+//           queryKey: ["courses", coursesFilters, page - 1],
+//           queryFn: () => getCourses(page - 1, coursesFilters),
+//       });
+//   }
+// }, [page, pageCount, coursesFilters, queryClient]);
     
+
+
+
     // const totalResults = filteredCourses.length;
 
     // function handleFilteredCourses (level:string,category:string,searchedQuery:string){

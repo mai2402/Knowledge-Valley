@@ -27,4 +27,4 @@ export enum TABLE_NAMES {
     COURSES = 'courses',
   }
 
-export const PAGE_SIZE = 5;
+export const PAGE_SIZE = 6;

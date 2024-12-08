@@ -8,6 +8,7 @@ import useFilterList from "../../hooks/useFilterList";
 import { CATEGORY_KEYS, FILTER_KEYS, LEVEL_KEYS } from "../../constants/Constants";
 import SearchBar from "../../ui/SearchBar";
 import Pagination from "../../ui/Pagination";
+import Spinner from "../../ui/Spinner";
 
 
 
@@ -20,7 +21,7 @@ import Pagination from "../../ui/Pagination";
   
 
   
-   const {courses,updatedFilteredCourses,coursesFilters,count,page,pageCount}= useFilterList()
+   const {courses,updatedFilteredCourses,coursesFilters,page,pageCount,isLoading}= useFilterList()
    const unifiedLevels = Object.values(LEVEL_KEYS);
    const unifiedCategories =  Object.values(CATEGORY_KEYS);
    const totalResults = courses?.length || 0;
@@ -41,16 +42,24 @@ import Pagination from "../../ui/Pagination";
                  onSelection={updatedFilteredCourses} filterKey={FILTER_KEYS.category} />
                   </div>
   </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {courses?.map((course) => (
-            
-            <CourseCard key={course.id} course={course} />
-          ))}
-              
- 
-    </div>
+  
+        {isLoading ? (
+          <Spinner/>
+        ) : courses?.length === 0 ? (
+          <p className="flex items-center text-teal-800">
+            No Results Were Found :(
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            {courses?.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        )}
+
     <div>
-      <Pagination count={count} page={page} pageCount={pageCount}/>
+      { courses?.length === 0 ?  null :
+        <Pagination page={page} numberOfPages={pageCount}/>}
     </div>
           </>
   )
