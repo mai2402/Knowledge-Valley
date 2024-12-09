@@ -18,6 +18,7 @@ import { CourseSchema } from "../types/CourseSchema";
   {
     const from = (page-1)* PAGE_SIZE;
     const to   = from + (PAGE_SIZE - 1);
+    console.log(`Fetching items from ${from} to ${to}`);
 
     query= query.range(from,to);
   }

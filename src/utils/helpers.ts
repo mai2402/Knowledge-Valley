@@ -10,5 +10,9 @@ export const formatCurrency = (value:any) =>
             searchParams: URLSearchParams,
             setSearchParams: (params: Record<string, string>) => void
           ) {
+
+            if (searchParams.get('page') !== "1") {
+
             setSearchParams({ ...Object.fromEntries(searchParams.entries()), page: "1" });
+            }
           }

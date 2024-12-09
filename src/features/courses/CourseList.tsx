@@ -12,57 +12,79 @@ import Spinner from "../../ui/Spinner";
 
 
 
-  
- 
 
   
- function CourseList() {
-  // const {courses}= useDisplayCourses()
-  
 
-  
-   const {courses,updatedFilteredCourses,coursesFilters,page,pageCount,isLoading}= useFilterList()
-   const unifiedLevels = Object.values(LEVEL_KEYS);
-   const unifiedCategories =  Object.values(CATEGORY_KEYS);
-   const totalResults = courses?.length || 0;
 
-  return(
-    <>
-  <div  className="flex flex-row justify-between items-center"> 
+function CourseList() {
+    const {
+        courses,
+        updatedFilteredCourses,
+        coursesFilters,
+        page,
+        pageCount,
+        isLoading,
+    } = useFilterList();
     
-    <span>{totalResults >1? `${totalResults} Results`:`${totalResults} Result`}</span>
 
-    <SearchBar query={coursesFilters.searchQuery} onSearch={updatedFilteredCourses} 
-               filterKey={FILTER_KEYS.name}/>
-               
-  <div className="flex justify-between items-center">
-     <ListFilterBox  list={unifiedLevels} placeholder="filter by level" 
-                  onSelection={updatedFilteredCourses} filterKey={FILTER_KEYS.level}  />
-     <ListFilterBox  list={unifiedCategories} placeholder="filter by Category" 
-                 onSelection={updatedFilteredCourses} filterKey={FILTER_KEYS.category} />
-                  </div>
-  </div>
-  
-        {isLoading ? (
-          <Spinner/>
-        ) : courses?.length === 0 ? (
-          <p className="flex items-center text-teal-800">
-            No Results Were Found :(
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-            {courses?.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
-        )}
+    const unifiedLevels = Object.values(LEVEL_KEYS);
+    const unifiedCategories = Object.values(CATEGORY_KEYS);
+    const totalResults = courses?.length || 0;
 
-    <div>
-      { courses?.length === 0 ?  null :
-        <Pagination page={page} numberOfPages={pageCount}/>}
-    </div>
-          </>
-  )
+    return (
+        <>
+            <div className="flex flex-row justify-between items-center">
+                <span>
+                    {totalResults > 1
+                        ? `${totalResults} Results`
+                        : `${totalResults} Result`}
+                </span>
+
+                <SearchBar
+                    query={coursesFilters.searchQuery}
+                    onSearch={updatedFilteredCourses}
+                    filterKey={FILTER_KEYS.name}
+                />
+
+                <div className="flex justify-between items-center">
+                    <ListFilterBox
+                        list={unifiedLevels}
+                        placeholder="Filter by Level"
+                        onSelection={updatedFilteredCourses}
+                        filterKey={FILTER_KEYS.level}
+                    />
+                    <ListFilterBox
+                        list={unifiedCategories}
+                        placeholder="Filter by Category"
+                        onSelection={updatedFilteredCourses}
+                        filterKey={FILTER_KEYS.category}
+                    />
+                </div>
+            </div>
+
+            {isLoading ? (
+                <Spinner />
+            ) : courses?.length === 0 ? (
+                <p className="flex items-center text-teal-800">
+                    No Results Were Found :(
+                </p>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                    {courses?.map((course) => (
+                        <CourseCard key={course.id} course={course} />
+                    ))}
+                </div>
+            )}
+
+            {courses?.length !== 0 && (
+                <Pagination page={page} numberOfPages={pageCount} />
+            )}
+        </>
+    );
+}
+
+export default CourseList;
+
       // return (<>
       //   <div  className="flex flex-row justify-between items-center"> 
       //         {/* showing results after filtering */}
@@ -88,7 +110,7 @@ import Spinner from "../../ui/Spinner";
       //         </>
 
       // );
-  }
   
-  export default CourseList;
+  
+
   

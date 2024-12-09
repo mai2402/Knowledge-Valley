@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import { CourseSchema } from "../types/CourseSchema";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCourses } from "../api/coursesApi";
@@ -55,16 +55,19 @@ function useFilterList() {
           const courses= data?.courses;
           const count= data?.count || 0;
 
-        //   if(coursesFilters &&count<6){
+        //   if(coursesFilters &&count<PAGE_SIZE){
       
         //     const defaultPage =1;
         //      setSearchParams({ ...searchParams, page:defaultPage.toString()});
         //  }
-        
-        if (coursesFilters && count < PAGE_SIZE) {
-          resetToFirstPage(searchParams, setSearchParams);
-        }
 
+
+        useEffect(() => {
+          // Reset the page to 1 if filters change
+          if (coursesFilters && count < PAGE_SIZE) {
+            resetToFirstPage(searchParams, setSearchParams);
+          }
+        }, [coursesFilters, count, searchParams, setSearchParams]);
 // next page 
  
 const pageCount = Math.ceil(count/PAGE_SIZE)
