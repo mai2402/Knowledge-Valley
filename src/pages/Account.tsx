@@ -3,8 +3,7 @@
 function Account() {
     return (
         <div>
-            
-          welcome my account
+       dsffsd
         </div>
     )
 }

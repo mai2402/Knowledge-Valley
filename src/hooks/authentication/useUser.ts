@@ -9,10 +9,11 @@ function useUser() {
   })
 
   const isAuthenticated= user?.role === "authenticated"
-  console.log(isAuthenticated,"isauthen")
-    
+
+   
     return {user,isLoading,error,isAuthenticated}
      
 }
+
 
 export default useUser
