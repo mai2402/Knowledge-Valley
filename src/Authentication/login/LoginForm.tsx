@@ -24,7 +24,7 @@ function LoginForm() {
     return (
         <>
         <header className="absolute top-0 left-0 w-full flex justify-between items-center px-6 py-4 text-primary z-20">
-                   <div className="text-3xl font-bold">Knowledge Valley</div>
+                   <Link to="/" className="text-3xl font-bold">Knowledge Valley</Link>
                    <nav className="flex items-center  text-lg">
                        <Link to="/about" className="text-primary hover:text-teal-600 transition px-4">About</Link>
                        <Link to="/contact" className="text-primary hover:text-teal-600 transition ">Contact Us</Link>

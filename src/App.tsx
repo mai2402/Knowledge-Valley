@@ -9,11 +9,10 @@ import SignUp from "./pages/SignUp"
 import Contact from "./pages/Contact"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import CourseDetails from "./pages/CourseDetails"
 import HomePage from "./pages/HomePage"
 import ProtectedRoute from "./ui/ProtectedRoute"
 import Login from "./pages/Login"
-import Courses from "./pages/Courses"
+
 
 
 const queryClient =new QueryClient(
@@ -39,13 +38,12 @@ function App() {
       <Route path="*" element={<PageNotFound />} />
       <Route path="aboutus" element={<About />} />
       <Route path="contactus" element={<Contact />} />
+   
 
       {/* Protected Routes */}
       <Route path="/home" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-        <Route index element={<Navigate replace to="/home/admin" />} />
-       
+        <Route index element={<Navigate replace to="/home/account" />} />
         <Route path="account" element={<Account />} />
-        <Route path="courses/:courseId" element={<CourseDetails />} />
         <Route path="admin" element={<Admin />} />
       </Route>
     </Routes>

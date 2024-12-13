@@ -12,7 +12,7 @@ function useLogin() {
         
         onSuccess:(user)=>{
             queryClient.setQueryData(["users"],user.user)
-            navigate("/admin",{replace:true})
+            navigate("/home",{replace:true})
         },
 
         onError:(err)=>{
