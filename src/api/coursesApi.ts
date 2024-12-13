@@ -48,6 +48,24 @@ import { CourseSchema } from "../types/CourseSchema";
 }
 
 
+export async function getCourseById(courseId:number){
+
+const { data, error } = await supabase
+.from('courses')
+.select("*")
+.eq("id",courseId)
+.single()
+
+if (error){
+  console.error(error)
+  throw new Error("course could not be Loaded")
+
+}
+
+return data;
+
+}
+
 export async function AddNewCourse (){
 
     const { data, error } = await supabase

@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 import { filterListDTO } from "../hooks/useFilterList"
 
@@ -18,6 +18,7 @@ function SearchBar({onSearch, query, filterKey}: SearchBarProps) {
     
     function handleOnChange(value: string) {
         onSearch({[filterKey]: value})
+      
     }
     return (
 

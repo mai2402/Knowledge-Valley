@@ -1,17 +1,24 @@
 
+
+import useModal from "../../hooks/useModal";
 import { CourseSchema } from "../../types/CourseSchema";
+import Modal from "../../ui/Modal";
 import { formatCurrency } from "../../utils/helpers";
+import CourseDetailsCard from "./CourseDetailsCard";
 
 interface CourseCardProps{
     course: CourseSchema,
+   
 }
 
 
 function CourseCard({ course }:CourseCardProps) {
-    const { name, description, category, price, discount, duration, level } = course;
+    const {isOpenModal,closeModal,openModal}= useModal()
+    const { name, description, category, price, discount, duration, level,id:courseId } = course;
     const discountedPrice = price - (price * (discount / 100));
 
     return (
+     
         <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6 border hover:shadow-xl transition-shadow">
             <h3 className="block h-[75px] text-lg font-bold text-primary">{name}</h3>
 
@@ -37,11 +44,20 @@ function CourseCard({ course }:CourseCardProps) {
                 <span>Duration: {duration} hours</span>
             </div>
                 </div>
-            
-            <button className="mt-4 w-full bg-primary text-white py-2 rounded-lg hover:bg-primary-dark transition">
+                
+            <button  onClick={openModal}
+                     className=" px-5 mt-4 w-full bg-primary text-white py-2 rounded-lg hover:bg-primary-dark transition">
                 Enroll Now
             </button>
+
+            <div className="flex items-center">
+           <Modal isOpen={isOpenModal} onClose={closeModal} title={`${name} details`} >
+              <CourseDetailsCard courseId={courseId}  />
+               </Modal>
         </div>
+         
+        </div>
+       
     );
 }
 

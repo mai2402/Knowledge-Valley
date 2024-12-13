@@ -1,10 +1,25 @@
-import { Link } from "react-router-dom";
+
 import CourseList from "../features/courses/CourseList"
+import { CourseSchema } from "../types/CourseSchema";
+import { CoursesFilters } from "../ui/Header";
+
+ export interface CourseListProps{
+    courses: CourseSchema[],
+    updatedFilteredCourses: (filters: Partial<CoursesFilters>) => void;
+    page:number,
+    pageCount:number,
+    isLoading:boolean,
+  
+
+}
 
 
-
-
-function Courses() {
+function Courses({
+    courses=[],
+    updatedFilteredCourses,
+    page,
+    pageCount,
+    isLoading,}:CourseListProps) {
     return (
         <div className="bg-gray-50 min-h-full p-10">
             {/* Intro Section */}
@@ -24,18 +39,7 @@ function Courses() {
                     Browse our popular courses across various fields. Each course is crafted with in-depth lessons, practical projects, and expert guidance to help you succeed.
                 </p>
                 
-                <CourseList />
-            </section>
-
-            {/* Call to Action */}
-            <section className="mt-16 text-center bg-teal-600 text-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-2">Ready to Get Started?</h3>
-                <p className="text-lg mb-6">
-                    Join our community of learners today. Sign up for an account and start your learning journey with Knowledge Valley!
-                </p>
-                <Link to="/signup" className="bg-white text-teal-600 font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-teal-50 transition">
-                    Create an Account
-                </Link>
+                <CourseList  isLoading={isLoading} courses={courses} updatedFilteredCourses={updatedFilteredCourses} page={page} pageCount={pageCount}/>
             </section>
         </div>
     );

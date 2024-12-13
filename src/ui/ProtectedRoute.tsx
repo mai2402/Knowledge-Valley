@@ -7,8 +7,9 @@ import Spinner from "./Spinner";
 
 export default function ProtectedRoute({children}:any) {
  
-const {isLoading,isAuthenticated,user}= useUser()
-console.log(user,"user")
+const {isLoading,isAuthenticated}= useUser()
+
+
 const navigate = useNavigate()
 
 useEffect(()=>{

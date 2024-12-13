@@ -1,14 +1,14 @@
 import CourseCard from "./CourseCard";
 import ListFilterBox from "../../ui/ListFilterBox";
-// import useFilterList from "../../hooks/useFilterList";
-// import SearchBar from "../../ui/SearchBar";
-// import { CourseSchema } from "../../types/CourseSchema";
 
-import useFilterList from "../../hooks/useFilterList";
 import { CATEGORY_KEYS, FILTER_KEYS, LEVEL_KEYS } from "../../constants/Constants";
-import SearchBar from "../../ui/SearchBar";
+
 import Pagination from "../../ui/Pagination";
 import Spinner from "../../ui/Spinner";
+
+import { CourseListProps } from "../../pages/Courses";
+
+
 
 
 
@@ -16,16 +16,13 @@ import Spinner from "../../ui/Spinner";
   
 
 
-function CourseList() {
-    const {
-        courses,
-        updatedFilteredCourses,
-        coursesFilters,
-        page,
-        pageCount,
-        isLoading,
-    } = useFilterList();
-    
+function CourseList({
+     courses,
+    updatedFilteredCourses,
+    page,
+    pageCount,isLoading}:CourseListProps
+  ) {
+ 
 
     const unifiedLevels = Object.values(LEVEL_KEYS);
     const unifiedCategories = Object.values(CATEGORY_KEYS);
@@ -40,11 +37,11 @@ function CourseList() {
                         : `${totalResults} Result`}
                 </span>
 
-                <SearchBar
+                {/* <SearchBar
                     query={coursesFilters.searchQuery}
                     onSearch={updatedFilteredCourses}
                     filterKey={FILTER_KEYS.name}
-                />
+                /> */}
 
                 <div className="flex justify-between items-center">
                     <ListFilterBox
@@ -79,6 +76,7 @@ function CourseList() {
             {courses?.length !== 0 && (
                 <Pagination page={page} numberOfPages={pageCount} />
             )}
+        
         </>
     );
 }

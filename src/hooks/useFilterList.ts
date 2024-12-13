@@ -68,6 +68,7 @@ function useFilterList() {
             resetToFirstPage(searchParams, setSearchParams);
           }
         }, [coursesFilters, count, searchParams, setSearchParams]);
+        
 // next page 
  
 const pageCount = Math.ceil(count/PAGE_SIZE)

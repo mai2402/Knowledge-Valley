@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Home() {
+function Landing() {
     return (
         <div className="home-container">
             <header className="absolute top-0 left-0 w-full flex justify-between items-center px-6 py-4 text-primary z-20">
@@ -32,7 +32,7 @@ function Home() {
     );
 }
 
-export default Home;
+export default Landing;
 
 
 
